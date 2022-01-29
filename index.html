@@ -11,13 +11,20 @@
             }
         </style>
         <script>
-            function play1() {
+function play1() {
                 /* Audio link for notification */
                 var mp3 = '<source src="click.mp3" type="audio/mpeg">';
                 document.getElementById("sound").innerHTML = 
                 '<audio autoplay="autoplay">' + mp3 + "</audio>";
+}
+function play2() {
+/* Audio link for notification */
+var voice = '<source src="beep.mp3" type="audio/mpeg">';
+document.getElementById("sound2").innerHTML =
+'<audio autoplay="autoplay">' + voice + "</audio>";
             }
-        </script>
+
+</script>
     </head>
     <body>
 <h1>GeeksforGeeks</h1>
@@ -31,6 +38,7 @@
 <button onclick="play1();">
             sound2
        </button>
-        <div id="sound"></div>
-    </body>
+<a href="go:home" role="button" onclick="play2();">home</a>
+<div id="sound" style="display:none;"></div>
+<div id="sound2" style="display:none;"></div>    </body>
 </html>
