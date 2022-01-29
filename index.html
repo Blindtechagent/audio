@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Notification Sound</title>
+        <style>
+            body {
+                text-align: center;
+            }
+            h1 {
+                color: green;
+            }
+        </style>
+        <script>
+            function play1() {
+                /* Audio link for notification */
+                var mp3 = '<source src="click.mp3" type="audio/mpeg">';
+                document.getElementById("sound").innerHTML = 
+                '<audio autoplay="autoplay">' + mp3 + "</audio>";
+            }
+        </script>
+    </head>
+    <body>
+<h1>GeeksforGeeks</h1>
+        <b>Notification Sound</b>
+        <br>
+        <!-- The onclick fires play1 function -->
+        <button onclick="play1();">
+            sound1
+       </button>
+<br>
+<button onclick="play1();">
+            sound2
+       </button>
+        <div id="sound"></div>
+    </body>
+</html>
