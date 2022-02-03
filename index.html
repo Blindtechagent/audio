@@ -1,44 +1,92 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Notification Sound</title>
-        <style>
-            body {
-                text-align: center;
-            }
-            h1 {
-                color: green;
-            }
-        </style>
-        <script>
-function play1() {
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">  <title>text-analyser by blind tech agent</title>
+  
+
+</head>
+<body bgcolor="#BCE954">
+<!-- partial:index.partial.html -->
+ <button class="w3-purple w3-circle" style="width:50px; height:50px;" onclick="play()">help</button>
+ <h1 style="color:blue; font-size:40px; text-align:center;">Text anelizer</h1>
+<br>  <input type="text" class="w3-margin w3-padding w3-text-black w3-round-medium" style=" background:snow; border:5px solid red; width:320px; height:150px;" id="text" placeholder="enter your text here to analyce">
+<br>
+<br>
+<br>
+<div class="w3-pannel w3-padding w3-blue">
+  <p>Word count: <span id="wordCount">0</span></p>
+  <p>Character count: <span id="charCount">0</span></p>
+</div>
+<br>
+<div class="w3-pannel w3-padding w3-blue"  <p>Line count: <span id="lineCount">0</span></p>
+  <p>Most repeated word: <span id="mostRepeatedWord"></span> <span id="mostRepeatedWordCount">0</span></p>
+</div>
+<p style="color:#842DCE; margin:0px; font-size:50px; text-align:center;">THANK YOU</p>
+<div id="sound" style="display:none;"></div>
+<!-- partial -->
+  <script>
+const text = document.getElementById("text");
+const wordCount = document.getElementById("wordCount");
+const charCount = document.getElementById("charCount");
+const lineCount = document.getElementById("lineCount");
+const mostRepeatedWord = document.getElementById("mostRepeatedWord");
+const mostRepeatedWordCount = document.getElementById("mostRepeatedWordCount");
+
+text.addEventListener("keyup", ()=> {
+  const currentText = text.value;
+  
+  wordCount.innerText = countWords(currentText);
+  charCount.innerText = countChars(currentText);
+  lineCount.innerText = countLines(currentText);
+  let mostRepeatedWordInfo = findMostRepeatedWord(currentText);
+  mostRepeatedWord.innerText = mostRepeatedWordInfo.mostRepeatedWord;
+  mostRepeatedWordCount.innerText = mostRepeatedWordInfo.mostRepeatedWordCount;
+});
+
+function countWords(str) {
+  str = str.trim();
+
+  return str === ""? 0 : str.split(/\s+/).length;
+}
+
+function countChars(str) {
+  return str.length;
+}
+
+function countLines(str) {
+  return str.trim() === ""? 0 :str.split("\n").length;
+}
+
+function findMostRepeatedWord(str){
+  let words = {};
+  let result = {
+    mostRepeatedWord: "",
+    mostRepeatedWordCount: 0
+  };
+  
+  str.match(/\w+/g).forEach(function(w){ 
+    words[w]=(words[w]||0)+1 });
+  
+  for (var w in words) {
+    if (!(words[w]<result.mostRepeatedWordCount)) {
+      result.mostRepeatedWordCount = words[w];
+      result.mostRepeatedWord = w;
+    }
+  }
+  
+  return result;
+}
+</script>
+<script>
+function play() {
                 /* Audio link for notification */
-                var mp3 = '<source src="click.mp3" type="audio/mpeg">';
+                var mp3 = '<source src="beep.mp3" type="audio/mpeg">';
                 document.getElementById("sound").innerHTML = 
                 '<audio autoplay="autoplay">' + mp3 + "</audio>";
 }
-function play2() {
-/* Audio link for notification */
-var voice = '<source src="beep.mp3" type="audio/mpeg">';
-document.getElementById("sound2").innerHTML =
-'<audio autoplay="autoplay">' + voice + "</audio>";
-            }
 
 </script>
-    </head>
-    <body onload="play2();">
-<h1>GeeksforGeeks</h1>
-        <b>Notification Sound</b>
-        <br>
-        <!-- The onclick fires play1 function -->
-        <button onclick="play1();">
-            sound1
-       </button>
-<br>
-<button onclick="play1();">
-            sound2
-       </button>
-<a href="go:home" role="button" onclick="play2();">home</a>
-<div id="sound" style="display:none;"></div>
-<div id="sound2" style="display:none;"></div>    </body>
+
+</body>
 </html>
